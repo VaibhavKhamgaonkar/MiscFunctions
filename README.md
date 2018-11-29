@@ -8,3 +8,7 @@ Created a repository for miscelineous functions:
 
 <h4> movingFilesfromSRC2DST.py</h4>
 used to move the files and folders from source and Destination 
+
+<h4>argumentAlongwithargumentValues.py</h4>
+
+ Code snippet for getting argument name along with parameter passsed in the form of dictionary
