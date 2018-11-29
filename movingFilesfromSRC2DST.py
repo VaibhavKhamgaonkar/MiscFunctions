@@ -2,7 +2,7 @@ import numpy as np, os,time
 #import cv2
 import shutil
 
-path = '/Users/vk250027/Documents/Bevmo/DATA_ver1/Train/'
+path = 'path of folder to be moved'
 
 folders = [i for i in os.listdir(path) if '.DS_Store' not in i]
 
