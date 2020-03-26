@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <!--<h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p>by : {{ post.author }}</p> -->
+        <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <!--<small class="text-muted">{{ post.content }}</small> -->
+              </div>
+              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+              <p class="article-content">{{ post.content }}</p>
+            </div>
+          </article>
+        
+    {% endfor %}
+    <!--<div class="content-section">
+        <div class="media">
+          <video width="360" height="420" class="content-section" src="{{ url_for ('static', filename = 'uploads/adfb6ff2b37c960b.mp4') }}" type="video/mp4" controls></video>
+          
+        </div>
+        
+      </div>-->
+
+    <div class="content-section">
+      {% if fileName %}
+        <span class="text-muted">Uploaded file name : {{fileName}}</span></br></br>
+        <video width="360" height="420" class="content-section" src="{{ url_for ('static', filename = 'uploads/' + fileName) }}" type="video/mp4" controls></video>
+      {% else %}
+        <span class="text-muted">Default Video</span>
+        <video width="360" height="420" class="content-section" src="{{ url_for ('static', filename = 'uploads/Default.mp4') }}" type="video/mp4" controls>
+      {% endif %}
+    
+    </div>
+    <div class = "content-section">
+      <form method="POST" action="" enctype="multipart/form-data" name='submit' value = 'browse'>
+        {{ browse.hidden_tag() }}
+        <fieldset class='form-group'>
+        </fieldset>
+        <div class="browse-group">
+            {{ browse.picture.label() }}
+            {{ browse.picture(class="browse-control-file") }}
+            {% if browse.picture.errors %}
+                {% for error in browse.picture.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                {% endfor %}
+            {% endif %}
+            <div class='btn'>
+                <input type="submit" name="submit" value="Upload" class='btn btn-outline-info'>
+                <!--{{ browse.submit(class='btn btn-outline-info')}} -->
+            </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-data">
+      <form method="POST" action="" enctype="multipart/form-data" name='submit' value = 'Process'>
+        {{ form.hidden_tag() }}
+        <div class='btn'>
+            <input type="submit" name="submit" value="Process" class='btn btn-outline-info'>
+            <!--{{ form.submit(class='btn btn-outline-info')}}-->
+        </div>
+      </form>
+    </div>
+  
+    
+    <div class="media content-section" style="width:125%" >
+      <div class="media-body" style="width:85%">
+          {% if is_Start %}
+          <span class="text-muted">Transformed Video:- </span></br>
+          <video width="420" height="380" class="content-section" src="{{ url_for ('static', filename = 'output/Transformed.mp4') }}" type="video/mp4" controls> 
+          {% endif %}
+      </div>
+      
+      <div class="table-hover">
+        <table class="table table table-bordered table-hover" style="width:100%">
+          <tr>
+            <th>Parameters</th>
+            <th>CalculatedOutput</th>
+          </tr>
+          {% for (k,v) in results.items() %}
+            <div class="table-hover">
+              <tr>
+                <td><p class="text-muted"> {{ k }}</p></td>
+                <td><p class="text-muted"> {{ v }}</p></td>
+              </tr>
+            </div>
+          {% endfor %}
+        </table>
+      </div>
+        <!--<div class="article-title">
+          <span class="mr-2">{{ k }} --=> {{v}} </span>
+        </div>-->
+     
+
+    </div>
+
+
+
+
+    <!--<div class="col-md-4">
+        <div class="content-section">
+          <p class='text-muted'>Click the Process button for starting processing.
+            <form method="POST", action="">
+                {{ form.hidden_tag() }}
+                <div class='form-group'>
+                    {{ form.submit(class='btn btn-outline-info')}}
+                </div>
+              </form>    
+          </p>
+        </div>
+    </div>
+    rounded-circle account-img
+    -->
+
+
+
+    <!--<div class= "content">
+      <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        <fieldset class='form-group'>
+          
+        </fieldset>
+        <div class='form-group'>
+            {{ form.submit(class='btn btn-outline-info')}}
+        </div>
+      </form>
+
+    </div>-->
+
+
+{% endblock content %}
