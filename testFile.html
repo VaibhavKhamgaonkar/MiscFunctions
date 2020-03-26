@@ -132,3 +132,44 @@
 
 
 {% endblock content %}
+
+
+
+
+
+#For displaying Watiing 
+#add these in css file:
+
+div#content {
+    display: none;
+    }
+
+div#loading {
+    top: 200 px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background: url(loadingimage.gif) no-repeat;
+    cursor: wait;
+    }
+
+
+Now add these div id into your html page as follows-
+
+<div id="loading"></div>
+<div id="content">your html content here......</div>
+
+Now add the following javascript code into head section of your html page.
+
+<script type="text/javascript">// <![CDATA[
+        function preloader(){
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }//preloader
+        window.onload = preloader;
+// ]]></script>
+
+
+
